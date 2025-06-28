@@ -5,8 +5,9 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // Middleware
-app.use(cors()); // Enable CORS for all routes
-app.use(express.json()); // Parse JSON bodies
+app.use(cors()); // Enable CORS for all routes and origins
+app.use(express.json()); // Handle application/json
+app.use(express.urlencoded({ extended: true })); // Handle application/x-www-form-urlencoded
 
 // Routes
 app.get("/health", (req, res) => {
