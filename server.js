@@ -20,7 +20,8 @@ app.get("/health", (_req, res) => {
 /* 1. Store every `{ number, msg }` we receive */
 app.post("/receive", (req, res) => {
   const { number, msg } = req.body;
-
+  console.log("req body",req.body);
+  console.log("detailed",number,msg);
   if (!number || !msg) {
     return res.status(400).json({ error: "`number` and `msg` are required." });
   }
