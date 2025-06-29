@@ -12,6 +12,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 /* ──── Routes ──── */
 app.get("/health", (_req, res) => {
   res.json({ status: "ok", ts: new Date().toISOString() });
@@ -48,3 +49,14 @@ app.get("/messages", (_req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
 });
+
+const SELF_URL = "https://test-backend-azt1.onrender.com/health";
+
+  setInterval(async () => {
+    try {
+      const res = await fetch(SELF_URL);
+      console.log(`[keepAlive] Pinged ${SELF_URL} – status ${res.status}`);
+    } catch (err) {
+      console.error(`[keepAlive] Failed to ping ${SELF_URL}: ${err.message}`);
+    }
+  }, 60_000); // every 1 minute
