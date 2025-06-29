@@ -59,4 +59,4 @@ const SELF_URL = "https://test-backend-azt1.onrender.com/health";
     } catch (err) {
       console.error(`[keepAlive] Failed to ping ${SELF_URL}: ${err.message}`);
     }
-  }, 60_000); // every 1 minute
+  }, 300000); // every 1 minute
